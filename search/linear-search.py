@@ -19,9 +19,8 @@ def linear_search(target, lst):
 
 # Example usage:
 my_list = [10, 7, 15, 22, 9, 13, 5]
-print("Input array : ", my_list)
 target_element = 9
-print("Target Element : ", 9)
+
 result = linear_search(target_element, my_list)
 if result != -1:
     print(f"Target element {target_element} found at index: {result}")
