@@ -5,3 +5,4 @@
 | Algorithm | Status |
 | ------ | ------ |
 | Bloom Filter | ✔️ |
+| Linear Search | ✔️ |
