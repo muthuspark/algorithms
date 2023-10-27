@@ -3,7 +3,6 @@ class Item:
         self.name = name
         self.value = value
         self.weight = weight
-        
         self.value_to_weight = value / weight if weight != 0 else 0
 
 
@@ -27,7 +26,8 @@ class BranchAndBoundSolver:
         # Sorting items by value-to-weight ratio allows for a greedy
         # approach, where you consider adding items to the knapsack in
         # descending order of their value-to-weight ratio. This means you
-        # prioritize items that give you the most value for the least weight.
+        # prioritize items that give you the most value for
+        # the least weight.
         self.items = sorted(
             items, key=lambda el: el.value_to_weight, reverse=True)
         self.items.insert(0, Item('0', 0, 0))
@@ -36,13 +36,15 @@ class BranchAndBoundSolver:
 
     def solve(self):
         """
-        Solve the knapsack problem using the Branch and Bound algorithm.
+        Solve the knapsack problem using the Branch and Bound
+        algorithm.
 
         Returns:
             list: The best solution found for the knapsack problem.
         """
         def recursion_step(current_root):
-            if self.get_upper_bound(current_root) < self.best_profit or self.is_infeasible(current_root):
+            if self.get_upper_bound(
+                    current_root) < self.best_profit or self.is_infeasible(current_root):
                 return
 
             current_node_profit = sum(
@@ -78,7 +80,8 @@ class BranchAndBoundSolver:
         Returns:
             int: The upper bound of the node.
         """
-        value = sum((self.items[i].value for i in node.included_items_indexes))
+        value = sum(
+            (self.items[i].value for i in node.included_items_indexes))
         weight = sum(
             (self.items[i].weight for i in node.included_items_indexes))
 
@@ -86,11 +89,14 @@ class BranchAndBoundSolver:
             next_element = Item('0', 0, 0)
         else:
             next_element = self.items[node.level + 1]
-        return value + (self.max_weight - weight) * next_element.value_to_weight
+        return value + (self.max_weight - weight) * \
+            next_element.value_to_weight
 
     def is_infeasible(self, node):
-        # Check if the total weight of the included items exceeds the maximum weight
-        return sum((self.items[i].weight for i in node.included_items_indexes)) > self.max_weight
+        # Check if the total weight of the included items
+        # exceeds the maximum weight
+        return sum(
+            (self.items[i].weight for i in node.included_items_indexes)) > self.max_weight
 
     def get_best_solution(self):
         if not self.possible_solutions:
@@ -113,11 +119,14 @@ capacity = 50
 items = [Item('P1', 50, 10), Item('P2', 98, 5), Item('P3', 54, 4), Item('P4', 6, 20), Item('P5', 34, 9), Item('P6', 66, 18), Item('P7', 63, 20), Item(
     'P8', 52, 5), Item('P9', 39, 10), Item('P10', 62, 4), Item('P11', 46, 3), Item('P12', 75, 11), Item('P13', 28, 16), Item('P14', 65, 18), Item('P15', 18, 4)]
 
-# capacity = 15
-# items = [Item('P1', 4, 12), Item('P2', 2, 2), Item('P3', 10, 4), Item('P4', 1, 1), Item('P5', 2, 1)]
+capacity = 15
+items = [Item('P1', 4, 12), Item('P2', 2, 2), Item(
+    'P3', 10, 4), Item('P4', 1, 1), Item('P5', 2, 1)]
 
-solver = BranchAndBoundSolver(max_weight=capacity, items=items)
+solver = BranchAndBoundSolver(
+    max_weight=capacity, items=items)
 print("Maximum Profit:", solver.solve())
 print("Selected Items")
 for item in solver.included_items():
-    print(f"Product {item.name}: profit= {item.value}, weight={item.weight}")
+    print(
+        f"Product {item.name}: profit= {item.value}, weight={item.weight}")

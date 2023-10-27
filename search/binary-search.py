@@ -34,6 +34,7 @@ target = 13
 
 result = binary_search(sorted_list, target)
 if result != -1:
-    print(f"Target element {target} found at index: {result}")
+    print(
+        f"Target element {target} found at index: {result}")
 else:
     print(f"Target element {target} not found in the list.")
