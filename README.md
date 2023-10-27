@@ -7,3 +7,4 @@
 | Bloom Filter | ✔️ |
 | Linear Search | ✔️ |
 | Binary Search | ✔️ |
+| Interpolation Search | ✔️ |
