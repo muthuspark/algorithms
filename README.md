@@ -6,3 +6,4 @@
 | ------ | ------ |
 | Bloom Filter | ✔️ |
 | Linear Search | ✔️ |
+| Binary Search | ✔️ |
