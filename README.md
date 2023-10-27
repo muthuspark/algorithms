@@ -1,2 +1,7 @@
-# algorithms
-Implementations of many algorithms
+# Algorithms by Muthukrishnan
+
+## Search Algorithms
+
+| Algorithm | Status |
+| ------ | ------ |
+| Bloom Filter | ✔️ |
