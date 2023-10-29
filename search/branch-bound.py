@@ -101,10 +101,10 @@ class BranchAndBoundSolver:
                 continue
 
             print(f"upper_bound:{current_node.upper_bound}")
+            print(f"items:{current_node.included_indexes}")
             print(f"profit:{current_node.total_value}")
             print(f"weight:{current_node.total_weight}")
-            print(
-                f"items:{current_node.included_indexes}")
+            print(f"best profit:{self.best_profit}")
 
             # if the total value of items added till now exceeds the tracked
             # best profit then update the optimal best
@@ -113,15 +113,14 @@ class BranchAndBoundSolver:
                 self.best_profit = current_node.total_value
                 self.best_combination = current_node
 
+            print("\n")
             next_level = current_node.level + 1
-            next_to_next_level = current_node.level + 2
 
             left_node = self.build_tree_node(next_level,
                                              current_node.included_indexes + [next_level])
             heapq.heappush(priority_queue, left_node)
 
-            right_node = self.build_tree_node(next_level,
-                                              current_node.included_indexes + [next_to_next_level])
+            right_node = self.build_tree_node(next_level, current_node.included_indexes)
             heapq.heappush(priority_queue, right_node)
 
         return self.get_best_solution()
@@ -148,8 +147,9 @@ class BranchAndBoundSolver:
             next_element = Item('END', 0, 0)
         else:
             next_element = self.items[node.level + 1]
-        return value + (self.knapsack_capacity -
-                        weight) * next_element.value_to_weight
+        bound = value + (self.knapsack_capacity -
+                        weight) * next_element.value_to_weight88
+        return bound
 
     def is_infeasible(self, node):
         # If the upper bound of the current node is less than our best profit
@@ -167,13 +167,13 @@ class BranchAndBoundSolver:
 
 
 # Example usage
-capacity = 50
-items = [Item('P1', 50, 10), Item('P2', 98, 5), Item('P3', 54, 4), Item('P4', 6, 20), Item('P5', 34, 9), Item('P6', 66, 18), Item('P7', 63, 20), Item(
-    'P8', 52, 5), Item('P9', 39, 10), Item('P10', 62, 4), Item('P11', 46, 3), Item('P12', 75, 11), Item('P13', 28, 16), Item('P14', 65, 18), Item('P15', 18, 4)]
+# capacity = 50
+# items = [Item('P1', 50, 10), Item('P2', 98, 5), Item('P3', 54, 4), Item('P4', 6, 20), Item('P5', 34, 9), Item('P6', 66, 18), Item('P7', 63, 20), Item(
+#     'P8', 52, 5), Item('P9', 39, 10), Item('P10', 62, 4), Item('P11', 46, 3), Item('P12', 75, 11), Item('P13', 28, 16), Item('P14', 65, 18), Item('P15', 18, 4)]
 
-# capacity = 15
-# items = [Item('P1', 4, 12), Item('P2', 2, 2), Item(
-#     'P3', 10, 4), Item('P4', 1, 1), Item('P5', 2, 1)]
+capacity = 15
+items = [Item('P1', 4, 12), Item('P2', 2, 2), Item(
+    'P3', 10, 4), Item('P4', 1, 1), Item('P5', 2, 1)]
 
 solver = BranchAndBoundSolver(
     knapsack_capacity=capacity, items=items)
