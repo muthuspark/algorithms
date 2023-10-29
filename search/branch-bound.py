@@ -1,3 +1,8 @@
+#**************************************
+# Solve the knapsack problem using the Branch and Bound
+#         algorithm.
+# Author: Muthukrishnan
+#**************************************
 import heapq
 
 
