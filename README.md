@@ -9,3 +9,4 @@
 | Binary Search | ✔️ |
 | Interpolation Search | ✔️ |
 | Knapsack Problem - Branch and Bound | ✔️ |
+| Hill Climbing TSP |  ✔️ |
