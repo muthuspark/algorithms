@@ -106,19 +106,7 @@ def hill_climbing(coordinate):
 
 
 # coordinate of the points/cities
-coordinate = np.array([
-    [1, 2],
-    [30, 21],
-    [56, 23],
-    [8, 18],
-    [20, 50],
-    [3, 4],
-    [11, 6],
-    [6, 7],
-    [15, 20],
-    [10, 9],
-    [12, 12]
-])
+coordinate = np.array([[50, 98], [54, 6], [34, 66], [63, 52], [39, 62], [46, 75], [28, 65], [18, 37], [18, 97], [13, 80]])
 
 final_solution = hill_climbing(coordinate)
 print(
