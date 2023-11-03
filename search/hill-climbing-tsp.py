@@ -3,6 +3,15 @@
 import numpy as np
 
 
+def euclidean_distance(c1, c2):
+    # This method calculates the Euclidean distance between two points.
+    # It takes two points, c1 and c2, as input and returns the Euclidean distance between them.
+    # The Euclidean distance is calculated using the numpy.linalg.norm function.
+    # The function subtracts c2 from c1 and calculates the norm of the resulting vector.
+    # The norm represents the length of the vector, which is the Euclidean distance between c1 and c2.
+    return np.linalg.norm(c1 - c2)
+
+
 def adjacency_matrix(coordinate):
     # This method calculates the adjacency matrix for a given set of coordinates.
     # The adjacency matrix represents the distances between each pair of coordinates.
@@ -11,8 +20,7 @@ def adjacency_matrix(coordinate):
     matrix = np.zeros((len(coordinate), len(coordinate)))
     for i in range(len(coordinate)):
         for j in range(i + 1, len(coordinate)):
-            p = np.linalg.norm(
-                coordinate[i] - coordinate[j])
+            p = euclidean_distance(coordinate[i], coordinate[j])
             matrix[i][j] = p
             matrix[j][i] = p
     return matrix
@@ -106,7 +114,18 @@ def hill_climbing(coordinate):
 
 
 # coordinate of the points/cities
-coordinate = np.array([[50, 98], [54, 6], [34, 66], [63, 52], [39, 62], [46, 75], [28, 65], [18, 37], [18, 97], [13, 80]])
+coordinate = np.array([
+        [565, 575], [25, 185], [345, 750], [945, 685], [845, 655],
+        [880, 660], [25, 230], [525, 1000], [580, 1175], [650, 1130],
+        [1605, 620], [1220, 580], [1465, 200], [1530, 5], [845, 680],
+        [725, 370], [145, 665], [415, 635], [510, 875], [560, 365], [300, 465],
+        [520, 585], [480, 415], [835, 625], [975, 580], [1215, 245], [1320, 315],
+        [1250, 400], [660, 180], [410, 250], [420, 555], [575, 665], [1150, 1160],
+        [700, 580], [685, 595], [685, 610], [770, 610], [795, 645], [720, 635],
+        [760, 650], [475, 960], [95, 260], [875, 920], [700, 500], [555, 815],
+        [830, 485], [1170, 65], [830, 610], [605, 625], [595, 360], [1340, 725], [1740, 245]
+    ])
+# coordinate = np.array([[50, 98], [54, 6], [34, 66], [63, 52], [39, 62], [46, 75], [28, 65], [18, 37], [18, 97], [13, 80]])
 
 final_solution = hill_climbing(coordinate)
 print(
