@@ -10,3 +10,4 @@
 | Interpolation Search | ✔️ |
 | Knapsack Problem - Branch and Bound | ✔️ |
 | Hill Climbing TSP |  ✔️ |
+| Tabu Search |  ✔️ |
