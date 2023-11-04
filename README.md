@@ -13,3 +13,6 @@
 | Tabu Search |  ✔️ |
 | Breadth First Search |  ✔️ |
 | Depth First Search |  ✔️ |
+| Greedy Best First Search |  ✔️ |
+| A* Search |  ✔️ |
+| B* Search |  ✔️ |
