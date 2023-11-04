@@ -11,3 +11,5 @@
 | Knapsack Problem - Branch and Bound | ✔️ |
 | Hill Climbing TSP |  ✔️ |
 | Tabu Search |  ✔️ |
+| Breadth First Search |  ✔️ |
+| Depth First Search |  ✔️ |
