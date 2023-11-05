@@ -16,3 +16,4 @@
 | Greedy Best First Search |  ✔️ |
 | A* Search |  ✔️ |
 | B* Search |  ✔️ |
+| Kruskals Algorithm |  ✔️ |
