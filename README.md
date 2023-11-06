@@ -17,3 +17,4 @@
 | A* Search |  ✔️ |
 | B* Search |  ✔️ |
 | Kruskals Algorithm |  ✔️ |
+| Prims Algorithm |  ✔️ |
