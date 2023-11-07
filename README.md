@@ -19,3 +19,5 @@
 | Kruskals Algorithm |  ✔️ |
 | Prims Algorithm |  ✔️ |
 | Floyd Warshell Algorithm |  ✔️ |
+| Bellman Ford Algorithm |  ✔️ |
+
