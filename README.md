@@ -18,3 +18,4 @@
 | B* Search |  ✔️ |
 | Kruskals Algorithm |  ✔️ |
 | Prims Algorithm |  ✔️ |
+| Floyd Warshell Algorithm |  ✔️ |
