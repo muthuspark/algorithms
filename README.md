@@ -14,10 +14,12 @@
 | Breadth First Search |  ✔️ |
 | Depth First Search |  ✔️ |
 | Greedy Best First Search |  ✔️ |
+| Dijkstra's Algorithm |  ✔️ |
 | A* Search |  ✔️ |
 | B* Search |  ✔️ |
 | Kruskals Algorithm |  ✔️ |
 | Prims Algorithm |  ✔️ |
 | Floyd Warshell Algorithm |  ✔️ |
 | Bellman Ford Algorithm |  ✔️ |
-
+| Beam Search |  ✔️ |
+| terative Deepening Depth-First Search (IDDFS) |  ✔️ |
