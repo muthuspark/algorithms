@@ -55,7 +55,7 @@ class CuckooHashTable:
                 return
             
             print("hash2:", key, secondary_hash_key)
-            
+
             # evict the key from the primary bucket
             # Swap key with existing key in table1
             temp = self.primary_table[primary_hash_key]
