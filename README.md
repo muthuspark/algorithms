@@ -23,3 +23,9 @@
 | Bellman Ford Algorithm |  ✔️ |
 | Beam Search |  ✔️ |
 | terative Deepening Depth-First Search (IDDFS) |  ✔️ |
+| Cuckoo Hashing |  ✔️ |
+| Cuckoo Filter |  ✔️ |
+| Genetic Algorithm |  ✔️ |
+| Ant Colony Optimization Algorithm |  ✔️ |
+| Nearest Neighbour Search Algorithm | ✔️ |
+| Monte Carlo Tree Search Algorithm | ✔️ |
