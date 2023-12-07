@@ -25,7 +25,8 @@ def prim(graph):
             # Mark the current vertex as visited
             visited.add(current_vertex)
 
-            # If the current vertex has a parent, add the edge to the minimum spanning tree
+            # If the current vertex has a parent, add the edge 
+            # to the minimum spanning tree
             if parent is not None:
                 print(parent, current_vertex, weight)
                 min_spanning_tree.append((parent, current_vertex, weight))
@@ -34,20 +35,23 @@ def prim(graph):
             for neighbor, neighbor_weight in graph[current_vertex]:
                 # Check if the neighbor has not been visited
                 if neighbor not in visited:
-                    # Add the neighbor to the priority queue with its weight and parent
+                    # Add the neighbor to the priority queue with 
+                    # its weight and parent
                     heapq.heappush(
-                        priority_queue, (neighbor_weight, neighbor, current_vertex))
+                        priority_queue, (neighbor_weight,
+                                         neighbor, current_vertex)
+                    )
     return min_spanning_tree
 
 
 # Example usage
 graph = {
-    'A': [('B', 6), ('D', 8), ('E', 5), ('F', 7)],
-    'B': [('C', 4), ('D', 3), ('A', 6)],
-    'C': [('D', 2), ('B', 4)],
-    'D': [('B', 3), ('C', 6), ('A', 8), ('E', 4)],
-    'E': [('D', 4), ('A', 5), ('F', 5)],
-    'F': [('A', 7), ('E', 5)]
+    "A": [("B", 6), ("D", 8), ("E", 5), ("F", 7)],
+    "B": [("C", 4), ("D", 3), ("A", 6)],
+    "C": [("D", 2), ("B", 4)],
+    "D": [("B", 3), ("C", 6), ("A", 8), ("E", 4)],
+    "E": [("D", 4), ("A", 5), ("F", 5)],
+    "F": [("A", 7), ("E", 5)],
 }
 
 min_spanning_tree = prim(graph)

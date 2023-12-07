@@ -1,8 +1,7 @@
-#**************************************
+# **************************************
 # Solve the knapsack problem using the Branch and Bound
 #         algorithm.
-# Author: Muthukrishnan
-#**************************************
+# **************************************
 import heapq
 
 
@@ -35,10 +34,12 @@ class BranchAndBoundSolver:
 
         Args:
             max_weight (int): The maximum weight the knapsack can hold.
-            items (list): The list of items to consider for the knapsack problem.
+            items (list): The list of items to consider for the
+            knapsack problem.
         """
         self.knapsack_capacity = knapsack_capacity
-        # Sort the items based on their value-to-weight ratio in descending order
+        # Sort the items based on their value-to-weight ratio in
+        # descending order
         # Sorting items by value-to-weight ratio allows for a greedy
         # approach, where you consider adding items to the knapsack in
         # descending order of their value-to-weight ratio. This means you
@@ -47,19 +48,14 @@ class BranchAndBoundSolver:
         self.items = sorted(
             items, key=lambda el: el.value_to_weight, reverse=True)
 
-        self.items.insert(0, Item('0', 0, 0))
+        self.items.insert(0, Item("0", 0, 0))
         self.best_profit = 0
         self.best_combination = []
 
-    def build_tree_node(
-            self, level, included_indexes):
-        node = TreeNode(
-            level, list(
-                set(included_indexes)))
-        node.total_weight = self.total_weight_of(
-            included_indexes)
-        node.total_value = self.total_value_of(
-            included_indexes)
+    def build_tree_node(self, level, included_indexes):
+        node = TreeNode(level, list(set(included_indexes)))
+        node.total_weight = self.total_weight_of(included_indexes)
+        node.total_value = self.total_value_of(included_indexes)
         node.upper_bound = self.get_upper_bound(node)
         # Priority of a node to be picked is decided by the
         # upper bound of the current set of element in this
@@ -69,12 +65,18 @@ class BranchAndBoundSolver:
         return node
 
     def total_weight_of(self, included_indexes):
-        return sum(self.items[index].weight for index in included_indexes
-                   if index < len(self.items) - 1)
+        return sum(
+            self.items[index].weight
+            for index in included_indexes
+            if index < len(self.items) - 1
+        )
 
     def total_value_of(self, included_indexes):
-        return sum(self.items[index].value for index in included_indexes
-                   if index < len(self.items) - 1)
+        return sum(
+            self.items[index].value
+            for index in included_indexes
+            if index < len(self.items) - 1
+        )
 
     def solve(self):
         """
@@ -116,11 +118,13 @@ class BranchAndBoundSolver:
             print("\n")
             next_level = current_node.level + 1
 
-            left_node = self.build_tree_node(next_level,
-                                             current_node.included_indexes + [next_level])
+            left_node = self.build_tree_node(
+                next_level, current_node.included_indexes + [next_level]
+            )
             heapq.heappush(priority_queue, left_node)
 
-            right_node = self.build_tree_node(next_level, current_node.included_indexes)
+            right_node = self.build_tree_node(
+                next_level, current_node.included_indexes)
             heapq.heappush(priority_queue, right_node)
 
         return self.get_best_solution()
@@ -136,19 +140,17 @@ class BranchAndBoundSolver:
         Returns:
             int: The upper bound of the node.
         """
-        value = self.total_value_of(
-            node.included_indexes)
-        weight = self.total_weight_of(
-            node.included_indexes)
+        value = self.total_value_of(node.included_indexes)
+        weight = self.total_weight_of(node.included_indexes)
 
         if node.level == len(self.items) - 1:
             # this means we just encountered an end node, so we add a zero
             # value item to stop further deep processing.
-            next_element = Item('END', 0, 0)
+            next_element = Item("END", 0, 0)
         else:
             next_element = self.items[node.level + 1]
-        bound = value + (self.knapsack_capacity -
-                        weight) * next_element.value_to_weight88
+        bound = value + (self.knapsack_capacity - weight) * \
+            next_element.value_to_weight
         return bound
 
     def is_infeasible(self, node):
@@ -156,14 +158,16 @@ class BranchAndBoundSolver:
         # or if the total weight included till now is greater than the
         # allowed maximum weight then discard this
         # branch
-        return node.upper_bound < self.best_profit or node.total_weight > self.knapsack_capacity
+        return (
+            node.upper_bound < self.best_profit
+            or node.total_weight > self.knapsack_capacity
+        )
 
     def get_best_solution(self):
         return self.best_profit
 
     def included_items(self):
-        return [self.items[i]
-                for i in self.best_combination.included_indexes]
+        return [self.items[i] for i in self.best_combination.included_indexes]
 
 
 # Example usage
@@ -172,13 +176,16 @@ class BranchAndBoundSolver:
 #     'P8', 52, 5), Item('P9', 39, 10), Item('P10', 62, 4), Item('P11', 46, 3), Item('P12', 75, 11), Item('P13', 28, 16), Item('P14', 65, 18), Item('P15', 18, 4)]
 
 capacity = 15
-items = [Item('P1', 4, 12), Item('P2', 2, 2), Item(
-    'P3', 10, 4), Item('P4', 1, 1), Item('P5', 2, 1)]
+items = [
+    Item("P1", 4, 12),
+    Item("P2", 2, 2),
+    Item("P3", 10, 4),
+    Item("P4", 1, 1),
+    Item("P5", 2, 1),
+]
 
-solver = BranchAndBoundSolver(
-    knapsack_capacity=capacity, items=items)
+solver = BranchAndBoundSolver(knapsack_capacity=capacity, items=items)
 print("Maximum Profit:", solver.solve())
 print("Included Items")
 for item in solver.included_items():
-    print(
-        f"Product {item.name}: profit= {item.value}, weight={item.weight}")
+    print(f"Product {item.name}: profit= {item.value}, weight={item.weight}")

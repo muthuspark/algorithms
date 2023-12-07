@@ -14,10 +14,14 @@ def distance(city1, city2):
 
 # Define the objective function to calculate the total tour length
 def total_distance(tour, cities):
-    return sum(distance(cities[tour[i]], cities[tour[i + 1]]) for i in range(len(tour) - 1))
+    return sum(distance(cities[tour[i]], cities[tour[i + 1]]) 
+               for i in range(len(tour) - 1))
 
 # Simulated Annealing function to find the best tour
-def simulated_annealing(cities, initial_temperature, cooling_rate, num_iterations):
+def simulated_annealing(cities, 
+                        initial_temperature, 
+                        cooling_rate, 
+                        num_iterations):
     num_cities = len(cities)
     
     # Initialize a random tour
@@ -36,8 +40,11 @@ def simulated_annealing(cities, initial_temperature, cooling_rate, num_iteration
         current_cost = total_distance(current_tour, cities)
         new_cost = total_distance(new_tour, cities)
         
-        # Decide whether to accept the new tour based on cost and temperature
-        if new_cost < current_cost or random.random() < math.exp((current_cost - new_cost) / current_temperature):
+        # Decide whether to accept the new tour based on 
+        # cost and temperature
+        if (new_cost < 
+            current_cost or random.random() < 
+            math.exp((current_cost - new_cost) / current_temperature)):
             current_tour = new_tour.copy()
             if new_cost < total_distance(best_tour, cities):
                 best_tour = new_tour.copy()
@@ -48,29 +55,28 @@ def simulated_annealing(cities, initial_temperature, cooling_rate, num_iteration
     return best_tour, total_distance(best_tour, cities)
 
 # Example usage
-if __name__ == "__main__":
-    np.random.seed(1)
-    # Generate array of random coodinates for city locations
-    coordinates = np.random.randint(0, 100, (20, 2))
-    cities = []
-    # Build Cities coordinates with their coordinates (x, y)
-    for c in coordinates:
-        cities.append(City(c[0], c[1]))
-    
-    # Set Simulated Annealing parameters
-    initial_temperature = 1000.0
-    cooling_rate = 0.995
-    num_iterations = 10000
-    
-    # Solve the TSP using Simulated Annealing
-    best_tour, shortest_distance = simulated_annealing(cities, 
-                                                       initial_temperature, 
-                                                       cooling_rate, 
-                                                       num_iterations)
-    
-    # Print the best tour and its total distance
-    print("Best Tour:", best_tour)
-    print("Shortest Distance:", shortest_distance) 
+np.random.seed(1)
+# Generate array of random coodinates for city locations
+coordinates = np.random.randint(0, 100, (20, 2))
+cities = []
+# Build Cities coordinates with their coordinates (x, y)
+for c in coordinates:
+    cities.append(City(c[0], c[1]))
+
+# Set Simulated Annealing parameters
+initial_temperature = 1000.0
+cooling_rate = 0.995
+num_iterations = 10000
+
+# Solve the TSP using Simulated Annealing
+best_tour, shortest_distance = simulated_annealing(cities, 
+                                                    initial_temperature, 
+                                                    cooling_rate, 
+                                                    num_iterations)
+
+# Print the best tour and its total distance
+print("Best Tour:", best_tour)
+print("Shortest Distance:", shortest_distance) 
 
 
 # Example usage
